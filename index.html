@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="pt-BR" >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tubarão Martelo - Conheça Tudo sobre esse Predador Fascinante</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;700&display=swap');
+
+    :root {
+      --baby-blue: #a7d8f7;
+      --baby-pink: #f9c6d3;
+      --dark-blue: #1e293b; /* Darker for better text contrast */
+      --dark-gray: #334155;
+      --light-bg: rgba(255 255 255 /0.9);
+      --glass-bg: rgba(255 255 255 /0.38);
+      --shadow-light-blue: rgba(167, 216, 247, 0.45);
+      --shadow-pink: rgba(249, 198, 211, 0.45);
+      --shadow-dark: rgba(51, 65, 85, 0.3);
+      --font-primary: 'Poppins', sans-serif;
+      --font-header: 'Playfair Display', serif;
+      --transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
+      --scroll-speed: 0.8s;
+      --max-content-width: 960px;
+    }
+
+    /* Reset & base */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at top left, var(--baby-blue), transparent 40%),
+        radial-gradient(circle at bottom right, var(--baby-pink), transparent 30%),
+        linear-gradient(135deg, #f8faff, #fefeff);
+      font-family: var(--font-primary);
+      color: var(--dark-blue);
+      line-height: 1.85;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+      font-size: 18px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Animate fade and up on scroll */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity var(--scroll-speed) ease-out, transform var(--scroll-speed) ease-out;
+      will-change: opacity, transform;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(90deg, var(--baby-blue), var(--baby-pink));
+      padding: 60px 20px 45px;
+      color: white;
+      text-align: center;
+      box-shadow: 0 8px 32px var(--shadow-light-blue);
+      border-bottom-left-radius: 85px;
+      border-bottom-right-radius: 85px;
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: "";
+      position: absolute;
+      top: -30%;
+      left: -15%;
+      width: 160%;
+      height: 160%;
+      background:
+        radial-gradient(circle at center, rgba(255 255 255 / 0.18) 30%, transparent 70%);
+      opacity: 0.35;
+      animation: pulseBackground 12s ease-in-out infinite alternate;
+      pointer-events: none;
+      z-index: 0;
+      border-radius: 50%;
+    }
+    @keyframes pulseBackground {
+      0% {transform: scale(1) translateX(0);}
+      100% {transform: scale(1.1) translateX(10px);}
+    }
+    header h1 {
+      position: relative;
+      z-index: 1;
+      margin: 0 0 15px;
+      font-size: 4.2rem;
+      letter-spacing: 4.5px;
+      font-weight: 700;
+      font-family: var(--font-header);
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+    }
+    header p {
+      position: relative;
+      z-index: 1;
+      font-size: 1.7rem;
+      font-weight: 400;
+      letter-spacing: 1.2px;
+      text-shadow: 1px 1px 5px rgba(0,0,0,0.12);
+      font-style: italic;
+      max-width: 660px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* Navigation */
+    nav {
+      background: var(--light-bg);
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      padding: 24px 18px;
+      position: sticky;
+      top: 0;
+      z-index: 2000;
+      box-shadow:
+        0 12px 28px var(--shadow-dark);
+      border-radius: 22px;
+      margin: -45px 40px 55px;
+      backdrop-filter: saturate(180%) blur(18px);
+      transition: box-shadow 0.3s ease;
+    }
+    nav:hover {
+      box-shadow: 0 15px 36px rgba(51, 65, 85, 0.5);
+    }
+
+    nav a {
+      color: var(--dark-blue);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.25rem;
+      padding: 14px 26px;
+      border-radius: 55px;
+      background: transparent;
+      box-shadow: inset 0 0 0 0 var(--baby-pink);
+      position: relative;
+      cursor: pointer;
+      transition:
+        color 0.35s var(--transition-ease),
+        background-color 0.35s var(--transition-ease),
+        box-shadow 0.35s var(--transition-ease),
+        transform 0.3s ease;
+      user-select: none;
+      font-family: var(--font-primary);
+      letter-spacing: 0.18em;
+    }
+    nav a::before {
+      content: "";
+      position: absolute;
+      bottom: 7px;
+      left: 50%;
+      height: 4.5px;
+      width: 0;
+      background: var(--baby-pink);
+      border-radius: 5px;
+      transform: translateX(-50%);
+      transition: width 0.35s ease;
+      z-index: 1;
+    }
+    nav a:hover {
+      color: white;
+      background: var(--baby-pink);
+      box-shadow:
+        0 6px 26px var(--shadow-pink);
+      transform: translateY(-3px);
+    }
+    nav a:hover::before {
+      width: 65%;
+    }
+    nav a.active {
+      color: white;
+      background: var(--baby-pink);
+      box-shadow: 0 8px 30px var(--shadow-pink);
+    }
+    nav a.active::before {
+      width: 80%;
+    }
+
+    /* Main content sections */
+    section {
+      max-width: var(--max-content-width);
+      margin: 0 auto 85px;
+      background: var(--glass-bg);
+      border-radius: 32px;
+      box-shadow: 0 28px 52px var(--shadow-dark);
+      padding: 56px 48px 60px;
+      border: 1.4px solid rgba(249, 198, 211, 0.46);
+      backdrop-filter: saturate(180%) blur(14px);
+      color: var(--dark-gray);
+      transition: box-shadow 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      font-size: 1.18rem;
+      font-weight: 500;
+      text-shadow: 0 1px 2px rgba(255 255 255 / 0.5);
+      line-height: 1.65;
+      user-select: text;
+    }
+    section:hover {
+      box-shadow: 0 38px 62px rgba(51, 65, 85, 0.35);
+    }
+    section h2 {
+      color: var(--baby-blue);
+      margin-bottom: 32px;
+      font-weight: 900;
+      font-size: 3rem;
+      border-bottom: 6px solid var(--baby-pink);
+      padding-bottom: 16px;
+      letter-spacing: 0.07em;
+      text-shadow: 0 1px 9px rgba(249, 198, 211, 0.72);
+      font-family: var(--font-header);
+      text-transform: uppercase;
+      user-select: none;
+      position: relative;
+      filter: drop-shadow(0 1px 3px var(--baby-pink));
+    }
+    section h2::after {
+      content: "🦈";
+      font-size: 2.6rem;
+      position: absolute;
+      right: -54px;
+      top: 2px;
+      color: var(--baby-pink);
+      filter: drop-shadow(0 0 4px rgba(249, 198, 211, 0.8));
+      transform: rotate(12deg);
+      user-select: none;
+    }
+
+    article {
+      margin-bottom: 34px;
+      font-size: 1.2rem;
+      font-weight: 500;
+      line-height: 1.75;
+      color: #475569;
+      user-select: text;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+      border-radius: 28px;
+      margin: 32px 0 45px;
+      box-shadow:
+        0 22px 44px var(--shadow-pink),
+        inset 0 0 36px var(--baby-blue);
+      border: 5px solid var(--baby-pink);
+      transition: transform 0.45s ease, box-shadow 0.4s ease;
+      cursor: pointer;
+      user-select: none;
+    }
+    img:hover, img:focus-visible {
+      transform: scale(1.12) rotate(1.5deg);
+      box-shadow:
+        0 42px 60px var(--shadow-pink),
+        inset 0 0 48px var(--baby-blue);
+      outline: none;
+    }
+
+    /* List styles */
+    ul {
+      font-size: 1.18rem;
+      padding-left: 30px;
+      color: #506475;
+      user-select: text;
+      list-style-type: none;
+      margin-top: 0;
+      margin-bottom: 44px;
+      letter-spacing: 0.03em;
+    }
+    ul li {
+      margin-bottom: 20px;
+      padding-left: 34px;
+      font-weight: 600;
+      position: relative;
+      cursor: default;
+      line-height: 1.7;
+    }
+    ul li::before {
+      content: "🐟";
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.4rem;
+      filter: drop-shadow(0 0 2px var(--baby-pink));
+      user-select: none;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      background: var(--dark-blue);
+      color: var(--baby-pink);
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 0.7px;
+      box-shadow: 0 -10px 28px rgba(51, 65, 85, 0.65);
+      border-top-left-radius: 48px;
+      border-top-right-radius: 48px;
+      user-select: none;
+      font-family: var(--font-header);
+      text-shadow: 0 1px 5px rgba(0,0,0,0.35);
+    }
+
+    /* Responsive */
+    @media (max-width: 960px) {
+      section {
+        padding: 45px 35px 50px;
+        margin: 0 24px 80px;
+        font-size: 1.16rem;
+        line-height: 1.6;
+      }
+      header h1 {
+        font-size: 3.3rem;
+        letter-spacing: 3.5px;
+      }
+      header p {
+        font-size: 1.4rem;
+      }
+      nav {
+        margin: -40px 24px 50px;
+      }
+      nav a {
+        font-size: 1.15rem;
+        padding: 12px 22px;
+        letter-spacing: 0.15em;
+      }
+      section h2 {
+        font-size: 2.6rem;
+      }
+      ul {
+        font-size: 1.09rem;
+      }
+    }
+
+    @media (max-width: 600px) {
+      body {
+        font-size: 15.5px;
+      }
+      header h1 {
+        font-size: 2.6rem;
+      }
+      header p {
+        font-size: 1.1rem;
+      }
+      nav {
+        flex-wrap: wrap;
+        gap: 14px;
+        padding: 18px 16px;
+        margin: -30px 18px 48px;
+      }
+      nav a {
+        font-size: 1.05rem;
+        padding: 10px 18px;
+      }
+      section {
+        margin: 0 16px 60px;
+        padding: 40px 28px 42px;
+        font-size: 1.13rem;
+      }
+      section h2 {
+        font-size: 2.2rem;
+        padding-bottom: 14px;
+      }
+      ul {
+        padding-left: 25px;
+        font-size: 1.02rem;
+        margin-bottom: 38px;
+      }
+      ul li::before {
+        font-size: 1.1rem;
+      }
+    }
+
+    @media (max-width: 400px) {
+      body {
+        font-size: 14px;
+      }
+      header h1 {
+        font-size: 2.2rem;
+      }
+      nav a {
+        font-size: 1rem;
+        padding: 9px 14px;
+        letter-spacing: 0.1em;
+      }
+      section {
+        margin: 0 14px 55px;
+        padding: 36px 22px 38px;
+      }
+      section h2 {
+        font-size: 1.9rem;
+      }
+      ul {
+        padding-left: 22px;
+        font-size: 0.95rem;
+      }
+      ul li::before {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="fade-up">
+  <h1>Tubarão Martelo</h1>
+  <p>Conheça tudo sobre esse predador fascinante dos oceanos</p>
+</header>
+
+<nav class="fade-up">
+    <H1>Tubarão Martelo 🦈</H1>
+</nav>
+
+<section id="introducao" class="fade-up">
+  <h2>Introdução</h2>
+  <p>O tubarão martelo é um dos predadores marinhos mais impressionantes e facilmente reconhecíveis devido ao formato único da sua cabeça em "T" ou martelo. Integrante da família Sphyrnidae, ele possui capacidades sensoriais excepcionais e é encontrado em águas tropicais e temperadas ao redor do mundo.</p>
+  <img src="istockphoto-481364121-612x612.jpg" alt="Tubarão Martelo nadando" tabindex="0" />
+</section>
+
+<section id="caracteristicas" class="fade-up">
+  <h2>Características Físicas</h2>
+  <article>
+    <p>A característica mais marcante do tubarão martelo é sua cabeça achatada e alargada, chamada de cefalotórax, que se estende lateralmente formando um formato semelhante a um martelo. Essa estrutura propicia uma visão panorâmica quase completa e abriga sensores eletroreceptores altamente desenvolvidos, aprimorando sua capacidade de detectar presas.</p>
+    <img src="ju6f1yyks7y61.jpg" alt="Esqueleto de tubarão martelo" tabindex="0" />
+  </article>
+  <article>
+    <p>Dependendo da espécie, estes tubarões medem entre 1,5 e 4 metros de comprimento e podem pesar até 450 quilos. Sua coloração varia do cinza acinzentado no dorso a tons mais claros no ventre, facilitando a camuflagem com o ambiente marinho.</p>
+  </article>
+</section>
+
+<section id="habitat" class="fade-up">
+  <h2>Habitat</h2>
+  <p>Os tubarões martelo habitam principalmente águas costeiras rasas e recifes, mas também circulam em alto mar. Estão presentes em oceanos Atlântico, Pacífico e Índico, preferindo regiões tropicais e subtropicais, plataformas continentais e estuários.</p>
+  <img src="tubarao-martelo-277266761.jpg" alt="Oceano onde o tubarão martelo habita" tabindex="0" />
+</section>
+
+<section id="comportamento" class="fade-up">
+  <h2>Comportamento</h2>
+  <p>Ao contrário de muitos tubarões solitários, tubarões martelo frequentemente nadam em agregações sociais chamadas cardumes, especialmente durante o dia. À noite, costumam sair para caçar, utilizando sua cabeça larga para detectar sinais elétricos emitidos por presas ocultas no sedimento marinho.</p>
+  <p>Esse comportamento social pode contribuir para proteção mútua e aumento da eficiência reprodutiva.</p>
+</section>
+
+<section id="dieta" class="fade-up">
+  <h2>Dieta</h2>
+  <p>O tubarão martelo possui uma dieta diversificada, alimentando-se de peixes, lulas, crustáceos e sobretudo arraias, que sua cabeça larga facilita capturar. Os seus dentes possuem formato afiado e são adaptados para cortar e agarrar firmemente suas presas durante a caça.</p>
+</section>
+
+<section id="reproducao" class="fade-up">
+  <h2>Reprodução</h2>
+  <p>Esses tubarões são vivíparos, ou seja, dão à luz filhotes já formados após um período de gestação que pode variar entre 9 a 12 meses. A fêmea pode parir entre 12 e 40 filhotes, que nascem com a cabeça já em formato de martelo, podendo nadar e se alimentar desde muito jovens.</p>
+</section>
+
+<section id="sensores" class="fade-up">
+  <h2>Capacidades Sensoriais</h2>
+  <p>A cabeça em forma de T não é apenas uma característica física, mas também abriga uma quantidade excepcional de sensores eletromagnéticos chamados ampolas de Lorenzini, que detectam campos elétricos produzidos por outras criaturas, facilitando localização de presas escondidas no fundo do mar.</p>
+  <p>Além disso, esses tubarões possuem um campo visual ampliado com dois olhos amplamente espaçados, e um olfato muito sensível, tornando-os caçadores especializados.</p>
+</section>
+
+<section id="especies" class="fade-up">
+  <h2>Espécies de Tubarão Martelo</h2>
+  <ul>
+    <li><strong>Sphyrna lewini</strong> (Tubarão Martelo Comum) - Uma das espécies mais difundidas e estudadas.</li>
+    <li><strong>Sphyrna mokarran</strong> (Tubarão Martelo Gigante) - A maior espécie, podendo ultrapassar 6 metros.</li>
+    <li><strong>Sphyrna zygaena</strong> (Tubarão Martelo Cabelo) - Encontrado em águas frias, com formato corporal mais robusto.</li>
+    <li><strong>Sphyrna tiburo</strong> (Tubarão Martelo Bonito) - Espécie menor, comum em águas costeiras rasas.</li>
+  </ul>
+</section>
+
+<section id="conservacao" class="fade-up">
+  <h2>Conservação</h2>
+  <p>Infelizmente, o tubarão martelo sofre ameaças devido à pesca excessiva, captura acidental e perda de habitat. Muitas espécies estão listadas como vulneráveis ou ameaçadas pela IUCN, destacando a importância de medidas de proteção, como áreas marinhas protegidas, regulamentos de pesca e conscientização pública.</p>
+</section>
+
+<section id="curiosidades" class="fade-up">
+  <h2>Curiosidades</h2>
+  <ul>
+    <li>O formato da cabeça do tubarão martelo assegura um campo visual de quase 360 graus.</li>
+    <li>Esses tubarões são especialistas em detectar campos eletromagnéticos gerados por presas enterradas.</li>
+    <li>Tem um dos sentidos de olfato mais apurados do reino animal.</li>
+    <li>Realizam migrações longas para reprodução e alimentação, viajando milhares de quilômetros.</li>
+    <li>Os filhotes nascem totalmente formados e prontos para sobreviver desde o nascimento.</li>
+  </ul>
+  <img src="tubarao-martelo-277266761.jpg" alt="Close do Tubarão martelo" tabindex="0" />
+</section>
+
+<footer>
+  <p>© 2024 Tubarão Martelo - Diario sobre tubarão martelo.</p>
+</footer>
+
+<script>
+  // Scroll fade-up effect
+  const fadeElements = document.querySelectorAll('.fade-up');
+  const navLinks = document.querySelectorAll('nav a');
+
+  function handleScroll() {
+    const triggerBottom = window.innerHeight * 0.85;
+
+    fadeElements.forEach(el => {
+      const top = el.getBoundingClientRect().top;
+      if (top < triggerBottom) {
+        el.classList.add('visible');
+      }
+    });
+
+    // Highlight nav menu based on scroll position
+    let currentIndex = fadeElements.length - 1;
+    for (let i = 0; i < fadeElements.length; i++) {
+      if(fadeElements[i].getBoundingClientRect().top > 80) {
+        currentIndex = i - 1;
+        break;
+      }
+    }
+    navLinks.forEach(link => link.classList.remove('active'));
+    if(currentIndex >= 0) {
+      const activeSection = fadeElements[currentIndex].id;
+      const activeLink = document.querySelector(`nav a[href="#${activeSection}"]`);
+      if(activeLink) activeLink.classList.add('active');
+    } else {
+      navLinks[0].classList.add('active');
+    }
+  }
+
+  window.addEventListener('scroll', handleScroll);
+  window.addEventListener('load', () => {
+    handleScroll();
+  });
+</script>
+
+</body>
+</html>
+
